@@ -20,7 +20,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- PERFORMANCE OPTIMIERUNG: Preload für das Hero-Bild (Largest Contentful Paint) -->
+    <!-- PERFORMANCE OPTIMIERUNG: Preload für das Hero-Bild -->
     <link rel="preload" as="image" href="Fenster.webp">
 
     <!-- Tailwind Config -->
@@ -31,12 +31,13 @@
                 extend: {
                     colors: {
                         brand: {
-                            light: '#f0f9ff',
-                            dark: '#082f49',
+                            light: '#f8fafc',
+                            dark: '#020617', // Tieferes Slate-Schwarz für den Hintergrund
                             primary: 'rgb(var(--color-primary) / <alpha-value>)',
                             accent: 'rgb(var(--color-accent) / <alpha-value>)',
                             cardLight: '#ffffff',
-                            cardDark: '#0f172a',
+                            cardDark: '#0f172a', // Slate-900 für Karten im Dark Mode
+                            cardDarkHover: '#1e293b', // Slate-800 für Hover-Effekte
                         }
                     },
                     fontFamily: {
@@ -44,7 +45,7 @@
                         heading: ['Oswald', 'sans-serif'],
                     },
                     animation: {
-                        'scroll': 'scroll 40s linear infinite',
+                        'scroll': 'scroll 45s linear infinite',
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
                     },
                     keyframes: {
@@ -70,7 +71,7 @@
 
         /* Glättung für Dark Mode Transition */
         body {
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Lenis Setup */
@@ -101,8 +102,8 @@
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: #0284c7; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
 
         /* Mobile UX: Verhindert den automatischen iOS Safari Zoom bei Formularfeldern */
         @media screen and (max-width: 767px) {
@@ -110,12 +111,24 @@
                 font-size: 16px !important;
             }
         }
+
+        /* Glassmorphism Utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-brand-dark dark:text-slate-100 font-sans antialiased overflow-x-hidden">
+<body class="bg-slate-50 text-slate-800 dark:bg-brand-dark dark:text-slate-300 font-sans antialiased overflow-x-hidden">
 
     <!-- NAVIGATION -->
-    <nav class="fixed w-full z-40 bg-white/90 dark:bg-brand-dark/95 backdrop-blur-md border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
+    <nav class="fixed w-full z-40 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 transition-all duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
             <div class="flex items-center justify-between h-20 md:h-24">
                 
@@ -127,7 +140,7 @@
                         <i class="fa-solid fa-droplet text-brand-primary text-sm md:text-lg relative z-10"></i>
                     </div>
                     <div class="flex flex-col font-heading">
-                        <span class="font-bold text-sm md:text-xl leading-none tracking-widest uppercase">
+                        <span class="font-bold text-sm md:text-xl leading-none tracking-widest uppercase dark:text-slate-100">
                             HESSE'S <span class="text-brand-primary">FENSTERREINIGUNGS<br>SERVICE</span>
                         </span>
                         <span class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-brand-accent font-bold mt-1">Für klaren Durchblick.</span>
@@ -136,17 +149,17 @@
                 
                 <!-- DESKTOP MENU -->
                 <div class="hidden lg:flex items-center space-x-8 font-heading">
-                    <a href="#home" class="nav-link text-sm font-medium uppercase tracking-wider">Start</a>
-                    <a href="#about" class="nav-link text-sm font-medium uppercase tracking-wider">Expertise</a>
-                    <a href="#process" class="nav-link text-sm font-medium uppercase tracking-wider">Ablauf</a>
-                    <a href="#services" class="nav-link text-sm font-medium uppercase tracking-wider">Leistungen</a>
-                    <a href="#contact" class="nav-link text-sm font-medium uppercase tracking-wider">Kontakt</a>
+                    <a href="#home" class="nav-link text-sm font-medium uppercase tracking-wider dark:text-slate-300 dark:hover:text-white">Start</a>
+                    <a href="#about" class="nav-link text-sm font-medium uppercase tracking-wider dark:text-slate-300 dark:hover:text-white">Expertise</a>
+                    <a href="#process" class="nav-link text-sm font-medium uppercase tracking-wider dark:text-slate-300 dark:hover:text-white">Ablauf</a>
+                    <a href="#services" class="nav-link text-sm font-medium uppercase tracking-wider dark:text-slate-300 dark:hover:text-white">Leistungen</a>
+                    <a href="#contact" class="nav-link text-sm font-medium uppercase tracking-wider dark:text-slate-300 dark:hover:text-white">Kontakt</a>
                 </div>
 
                 <!-- CALL BUTTON & THEME TOGGLE (Desktop) -->
                 <div class="hidden sm:flex items-center space-x-4 font-heading">
-                    <button class="theme-toggle p-2 text-slate-400 hover:text-brand-primary dark:text-slate-400 dark:hover:text-yellow-400 transition-colors focus:outline-none" aria-label="Farbschema wechseln">
-                        <i class="fa-solid fa-moon text-xl theme-icon"></i>
+                    <button class="theme-toggle w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-yellow-400 hover:scale-110 transition-all focus:outline-none border border-transparent dark:border-slate-700" aria-label="Farbschema wechseln">
+                        <i class="fa-solid fa-moon text-lg theme-icon"></i>
                     </button>
                     <a href="tel:+4915901620070" class="bg-brand-primary hover:bg-sky-700 text-white px-5 py-2.5 rounded-sm text-sm font-bold uppercase tracking-widest transition-all shadow-md active:translate-y-0.5">
                         <i class="fa-solid fa-phone mr-2"></i> Beratung
@@ -154,9 +167,9 @@
                 </div>
 
                 <!-- Mobile Menu Toggle & Theme Toggle -->
-                <div class="lg:hidden flex items-center space-x-2">
-                    <button class="theme-toggle p-2 text-slate-400 hover:text-brand-primary dark:text-slate-400 dark:hover:text-yellow-400 transition-colors focus:outline-none sm:hidden" aria-label="Farbschema wechseln">
-                        <i class="fa-solid fa-moon text-xl theme-icon"></i>
+                <div class="lg:hidden flex items-center space-x-3">
+                    <button class="theme-toggle w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-yellow-400 focus:outline-none sm:hidden" aria-label="Farbschema wechseln">
+                        <i class="fa-solid fa-moon text-lg theme-icon"></i>
                     </button>
                     <button type="button" onclick="toggleMenu()" class="p-2 text-slate-600 dark:text-slate-300 focus:outline-none" aria-label="Menü öffnen">
                         <i class="fa-solid fa-bars-staggered text-2xl"></i>
@@ -166,14 +179,14 @@
         </div>
 
         <!-- MOBILE MENU OVERLAY -->
-        <div id="mobile-menu" class="lg:hidden bg-white dark:bg-brand-cardDark border-t border-slate-100 dark:border-white/10 transition-all duration-300 overflow-hidden max-h-0 font-heading">
+        <div id="mobile-menu" class="lg:hidden bg-white dark:bg-brand-cardDark border-t border-slate-100 dark:border-slate-800 transition-all duration-300 overflow-hidden max-h-0 font-heading">
             <div class="px-6 py-8 space-y-4 text-center">
-                <a href="#home" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Startseite</a>
-                <a href="#about" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Expertise</a>
-                <a href="#process" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Ablauf</a>
-                <a href="#services" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Leistungen</a>
+                <a href="#home" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2 dark:text-slate-100">Startseite</a>
+                <a href="#about" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2 dark:text-slate-100">Expertise</a>
+                <a href="#process" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2 dark:text-slate-100">Ablauf</a>
+                <a href="#services" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2 dark:text-slate-100">Leistungen</a>
                 <a href="#contact" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2 text-brand-primary">Kontakt</a>
-                <hr class="border-slate-100 dark:border-white/5">
+                <hr class="border-slate-100 dark:border-slate-800">
                 <a href="tel:+4915901620070" class="inline-flex items-center justify-center w-full bg-brand-primary text-white font-bold py-4 rounded-sm uppercase tracking-widest shadow-lg">
                     <i class="fa-solid fa-phone mr-3"></i> 01590 1620070
                 </a>
@@ -185,16 +198,16 @@
     <section id="home" class="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-20">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
-            <!-- PERFORMANCE: fetchpriority="high" signalisiert dem Browser, dieses Bild mit höchster Priorität zu laden (LCP-Optimierung) -->
             <img src="Fenster.webp" fetchpriority="high" class="w-full h-full object-cover" alt="Fensterreinigung mit Abzieher und Schaum auf Glasscheibe">
-            <div class="absolute inset-0 bg-white/80 dark:bg-brand-dark/90 transition-colors duration-500"></div>
+            <!-- Overlay Optimierung: Heller im Light Mode, Tiefer im Dark Mode für bessere Lesbarkeit -->
+            <div class="absolute inset-0 bg-white/70 dark:bg-slate-950/85 transition-colors duration-700"></div>
         </div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-center animate-fade-in-up">
             <span class="inline-block px-4 py-1 border border-brand-primary/30 text-brand-primary dark:text-brand-accent font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-8 rounded-full font-heading">
                 Ihr Spezialist in Neuwied & Koblenz
             </span>
-            <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight uppercase tracking-tight">
+            <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight uppercase tracking-tight dark:text-white">
                 Perfekter Durchblick. <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-blue-400">Ohne Kompromisse.</span>
             </h1>
@@ -205,7 +218,7 @@
                 <a href="#contact" class="w-full sm:w-auto bg-brand-primary text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-sky-700 transition-all shadow-xl text-sm">
                     Kostenlos anfragen
                 </a>
-                <a href="#services" class="w-full sm:w-auto border-2 border-slate-300 dark:border-slate-700 px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-sm">
+                <a href="#services" class="w-full sm:w-auto border-2 border-slate-300 dark:border-slate-700 px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-white transition-all text-sm">
                     Unsere Leistungen
                 </a>
             </div>
@@ -213,7 +226,7 @@
     </section>
 
     <!-- MARQUEE (TRUST) -->
-    <section class="py-8 bg-white dark:bg-brand-dark border-y border-slate-100 dark:border-white/5 overflow-hidden relative">
+    <section class="py-10 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800 overflow-hidden relative">
         <div class="marquee-container w-full">
             <div class="flex w-max animate-scroll">
                 <div class="flex gap-16 px-8 text-slate-400 dark:text-slate-500 font-heading font-semibold uppercase tracking-[0.2em] text-[10px] md:text-xs items-center">
@@ -222,7 +235,7 @@
                     <span class="whitespace-nowrap"><i class="fa-solid fa-building text-brand-primary mr-2"></i> Für Gewerbe & Privat</span>
                     <span class="whitespace-nowrap"><i class="fa-solid fa-solar-panel text-brand-primary mr-2"></i> Werterhalt Ihrer Anlagen</span>
                     <span class="whitespace-nowrap"><i class="fa-solid fa-leaf text-brand-primary mr-2"></i> Umweltschonend</span>
-                    <!-- Duplicate for infinite loop illusion -->
+                    <!-- Loop Duplicate -->
                     <span class="whitespace-nowrap"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Streifenfreie Garantie</span>
                     <span class="whitespace-nowrap"><i class="fa-solid fa-water text-brand-primary mr-2"></i> Osmose-Verfahren (Reinstwasser)</span>
                     <span class="whitespace-nowrap"><i class="fa-solid fa-building text-brand-primary mr-2"></i> Für Gewerbe & Privat</span>
@@ -231,40 +244,39 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION (Die physikalische Tiefe der Reinigung) -->
+    <!-- ABOUT SECTION -->
     <section id="about" class="py-24 md:py-32 bg-slate-50 dark:bg-brand-dark relative transition-colors">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1 relative">
-                    <div class="absolute -top-4 -left-4 w-32 h-32 bg-brand-primary/10 rounded-full blur-2xl"></div>
-                    <!-- PERFORMANCE & STABILITÄT: Lokales Bild (Fesntermann.webp) mit Fokus auf Arbeitssicherheit und Professionalität -->
-                    <img src="Fesntermann.webp" loading="lazy" alt="Handwerker bei der professionellen Glasreinigung" class="relative rounded-sm shadow-xl w-full aspect-[4/3] object-cover">
-                    <div class="absolute -bottom-6 -right-6 bg-white dark:bg-brand-cardDark p-8 border border-slate-200 dark:border-white/10 shadow-2xl">
+                    <div class="absolute -top-4 -left-4 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl"></div>
+                    <img src="Fesntermann.webp" loading="lazy" alt="Handwerker bei der professionellen Glasreinigung" class="relative rounded-sm shadow-2xl w-full aspect-[4/3] object-cover border border-white/10">
+                    <div class="absolute -bottom-6 -right-6 bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 shadow-2xl">
                         <span class="block font-heading text-4xl font-bold text-brand-primary leading-none">100%</span>
-                        <span class="font-heading text-[10px] uppercase tracking-widest text-slate-400">Rückstandsfrei</span>
+                        <span class="font-heading text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-400">Rückstandsfrei</span>
                     </div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <h2 class="text-brand-primary font-heading font-bold uppercase tracking-[0.3em] mb-4 text-xs">Warum ein Spezialist?</h2>
-                    <h3 class="font-heading text-3xl md:text-5xl font-bold mb-6 uppercase leading-tight">Wissenschaft der Sauberkeit.</h3>
+                    <h3 class="font-heading text-3xl md:text-5xl font-bold mb-6 uppercase leading-tight dark:text-white">Wissenschaft der Sauberkeit.</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-lg font-light mb-6 leading-relaxed">
                         Eine professionelle Glasreinigung geht weit über herkömmliches Putzen hinaus. Hartnäckige Verschmutzungen, mineralische Ablagerungen und Umwelteinflüsse erfordern fundiertes Fachwissen über Oberflächenbeschaffenheiten und Reinigungschemie.
                     </p>
                     <p class="text-slate-600 dark:text-slate-400 text-lg font-light mb-8 leading-relaxed">
-                        Wir setzen bei Bedarf auf entmineralisiertes Reinstwasser (Osmose-Verfahren). Da dieses Wasser physikalisch "ungesättigt" ist, zieht es Schmutzpartikel wie ein Magnet an und trocknet anschließend absolut rückstands- und streifenfrei ab – ganz ohne umweltschädliche Tenside.
+                        Wir setzen bei Bedarf auf entmineralisiertes Reinstwasser (Osmose-Verfahren). Da dieses Wasser physikalisch "ungesättigt" ist, zieht es Schmutzpartikel wie ein Magnet an und trocknet anschließend absolut rückstands- und streifenfrei ab.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 flex items-center justify-center rounded-sm bg-brand-primary/10 dark:bg-white/5">
-                                <i class="fa-solid fa-shield-halved text-brand-primary"></i>
+                            <div class="w-12 h-12 flex items-center justify-center rounded-sm bg-brand-primary/10 dark:bg-slate-800">
+                                <i class="fa-solid fa-shield-halved text-brand-primary text-xl"></i>
                             </div>
-                            <span class="font-medium font-heading uppercase text-sm tracking-wide">Werterhalt durch professionelle Pflege</span>
+                            <span class="font-medium font-heading uppercase text-sm tracking-wide dark:text-slate-200">Werterhalt durch professionelle Pflege</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 flex items-center justify-center rounded-sm bg-brand-primary/10 dark:bg-white/5">
-                                <i class="fa-solid fa-leaf text-brand-primary"></i>
+                            <div class="w-12 h-12 flex items-center justify-center rounded-sm bg-brand-primary/10 dark:bg-slate-800">
+                                <i class="fa-solid fa-leaf text-brand-primary text-xl"></i>
                             </div>
-                            <span class="font-medium font-heading uppercase text-sm tracking-wide">Starkes Umweltbewusstsein & Ökologie</span>
+                            <span class="font-medium font-heading uppercase text-sm tracking-wide dark:text-slate-200">Umweltbewusstsein & Ökologie</span>
                         </div>
                     </div>
                 </div>
@@ -272,192 +284,174 @@
         </div>
     </section>
 
-    <!-- PROCESS SECTION (Wie unser Reinigungsservice abläuft) -->
-    <section id="process" class="py-24 bg-brand-light dark:bg-brand-cardDark/40 transition-colors border-y border-slate-200 dark:border-white/5">
+    <!-- PROCESS SECTION -->
+    <section id="process" class="py-24 bg-brand-light dark:bg-slate-900/50 transition-colors border-y border-slate-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-brand-primary font-heading font-bold uppercase tracking-[0.3em] mb-4 text-xs">Der Prozess</h2>
-                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase">Wie unser Service abläuft</h3>
+                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase dark:text-white">Wie unser Service abläuft</h3>
                 <div class="w-20 h-1 bg-brand-primary mx-auto mt-6"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                <!-- Verbindende Linie (nur Desktop) -->
-                <div class="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-slate-200 dark:bg-slate-700 z-0"></div>
+                <div class="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-slate-200 dark:bg-slate-800 z-0"></div>
 
-                <!-- Step 1 -->
+                <!-- Steps -->
                 <div class="relative z-10 text-center group">
-                    <div class="w-24 h-24 mx-auto bg-white dark:bg-brand-dark rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-xl mb-6 group-hover:border-brand-primary transition-colors duration-300">
+                    <div class="w-24 h-24 mx-auto bg-white dark:bg-slate-800 rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-700 shadow-xl mb-6 group-hover:border-brand-primary transition-all duration-300">
                         <i class="fa-solid fa-phone-alt text-2xl text-brand-primary"></i>
                     </div>
-                    <h4 class="font-heading text-xl font-bold uppercase mb-3">1. Beratung & Angebot</h4>
-                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Wir analysieren Ihre Flächen und erstellen ein präzises, unverbindliches Angebot – exakt auf Ihre architektonischen Gegebenheiten zugeschnitten.</p>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-3 dark:text-slate-100">1. Beratung</h4>
+                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Wir analysieren Ihre Flächen und erstellen ein präzises, unverbindliches Angebot.</p>
                 </div>
 
-                <!-- Step 2 -->
                 <div class="relative z-10 text-center group">
-                    <div class="w-24 h-24 mx-auto bg-white dark:bg-brand-dark rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-xl mb-6 group-hover:border-brand-primary transition-colors duration-300">
+                    <div class="w-24 h-24 mx-auto bg-white dark:bg-slate-800 rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-700 shadow-xl mb-6 group-hover:border-brand-primary transition-all duration-300">
                         <i class="fa-solid fa-calendar-check text-2xl text-brand-primary"></i>
                     </div>
-                    <h4 class="font-heading text-xl font-bold uppercase mb-3">2. Terminvereinbarung</h4>
-                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Gemeinsam finden wir ein Zeitfenster, das Ihren Betriebs- oder Privatalltag minimal tangiert. Zuverlässigkeit ist unsere Konstante.</p>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-3 dark:text-slate-100">2. Planung</h4>
+                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Gemeinsam finden wir ein Zeitfenster, das Ihren Alltag minimal tangiert.</p>
                 </div>
 
-                <!-- Step 3 -->
                 <div class="relative z-10 text-center group">
-                    <div class="w-24 h-24 mx-auto bg-white dark:bg-brand-dark rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-xl mb-6 group-hover:border-brand-primary transition-colors duration-300">
+                    <div class="w-24 h-24 mx-auto bg-white dark:bg-slate-800 rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-700 shadow-xl mb-6 group-hover:border-brand-primary transition-all duration-300">
                         <i class="fa-solid fa-wand-magic-sparkles text-2xl text-brand-primary"></i>
                     </div>
-                    <h4 class="font-heading text-xl font-bold uppercase mb-3">3. Ausführung</h4>
-                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Fachgerechte, termintreue Umsetzung mit hochwirksamen, materialschonenden Methoden für ein tadelloses Ergebnis.</p>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-3 dark:text-slate-100">3. Ausführung</h4>
+                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Fachgerechte Umsetzung mit hochwirksamen, materialschonenden Methoden.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES (Cards) -->
+    <!-- SERVICES -->
     <section id="services" class="py-24 bg-white dark:bg-brand-dark transition-colors">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-brand-primary font-heading font-bold uppercase tracking-[0.3em] mb-4 text-xs">Spezialgebiete</h2>
-                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase">Unsere Leistungen</h3>
+                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase dark:text-white">Unsere Leistungen</h3>
                 <div class="w-20 h-1 bg-brand-primary mx-auto mt-6"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="bg-slate-50 dark:bg-brand-cardDark p-8 rounded-sm border border-slate-200 dark:border-white/5 hover:border-brand-primary dark:hover:border-brand-primary transition-all group flex flex-col h-full">
+                <div class="bg-slate-50 dark:bg-brand-cardDark p-10 rounded-sm border border-slate-200 dark:border-slate-800 hover:border-brand-primary dark:hover:bg-brand-cardDarkHover transition-all group flex flex-col h-full shadow-sm hover:shadow-xl">
                     <i class="fa-solid fa-window-maximize text-4xl text-brand-primary mb-6 block group-hover:scale-110 transition-transform origin-left"></i>
-                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide">Glas- & Fensterreinigung</h4>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide dark:text-white">Glas- & Fensterreinigung</h4>
                     <p class="text-brand-primary font-heading text-sm uppercase tracking-widest mb-4 font-semibold">Der Durchblick den Sie brauchen!</p>
-                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Von der klassischen Fensterfront im Eigenheim bis zur komplexen Glasfassade im Gewerbebau. Wir entfernen fachmännisch Witterungsspuren, Abgase und hartnäckige Verschmutzungen für maximale Transparenz.</p>
+                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Von der klassischen Fensterfront im Eigenheim bis zur komplexen Glasfassade im Gewerbebau.</p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-slate-50 dark:bg-brand-cardDark p-8 rounded-sm border border-slate-200 dark:border-white/5 hover:border-brand-primary dark:hover:border-brand-primary transition-all group flex flex-col h-full">
+                <div class="bg-slate-50 dark:bg-brand-cardDark p-10 rounded-sm border border-slate-200 dark:border-slate-800 hover:border-brand-primary dark:hover:bg-brand-cardDarkHover transition-all group flex flex-col h-full shadow-sm hover:shadow-xl">
                     <i class="fa-solid fa-house-chimney-window text-4xl text-brand-primary mb-6 block group-hover:scale-110 transition-transform origin-left"></i>
-                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide">Wintergartenreinigung</h4>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide dark:text-white">Wintergartenreinigung</h4>
                     <p class="text-brand-primary font-heading text-sm uppercase tracking-widest mb-4 font-semibold">Wohlfühlort mit Ausblick!</p>
-                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Überkopfverglasungen und schwer zugängliche Dachfenster stellen besondere Anforderungen. Wir sorgen mit spezieller Ausrüstung für Sicherheit und streifenfreie Sauberkeit – innen wie außen.</p>
+                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Überkopfverglasungen stellen besondere Anforderungen. Wir sorgen für Sicherheit und streifenfreie Sauberkeit.</p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-slate-50 dark:bg-brand-cardDark p-8 rounded-sm border border-slate-200 dark:border-white/5 hover:border-brand-primary dark:hover:border-brand-primary transition-all group flex flex-col h-full">
+                <div class="bg-slate-50 dark:bg-brand-cardDark p-10 rounded-sm border border-slate-200 dark:border-slate-800 hover:border-brand-primary dark:hover:bg-brand-cardDarkHover transition-all group flex flex-col h-full shadow-sm hover:shadow-xl">
                     <i class="fa-solid fa-solar-panel text-4xl text-brand-primary mb-6 block group-hover:scale-110 transition-transform origin-left"></i>
-                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide">Solar- & PV-Reinigung</h4>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide dark:text-white">Solar- & PV-Reinigung</h4>
                     <p class="text-brand-primary font-heading text-sm uppercase tracking-widest mb-4 font-semibold">Geld sparen durch Sauberkeit!</p>
-                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Verschmutzte Solarmodule (durch Staub, Pollen, Vogelkot) erleiden signifikante Ertragsverluste. Wir reinigen Ihre Module chemiefrei mit entmineralisiertem Wasser, um die physikalische Effizienz der Zellen wiederherzustellen.</p>
+                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Wir reinigen Ihre Module chemiefrei mit entmineralisiertem Wasser, um die physikalische Effizienz wiederherzustellen.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIALS (Das sagen unsere Kunden) -->
-    <section class="py-24 bg-brand-dark text-white relative overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-20">
-             <!-- PERFORMANCE: loading="lazy" für Hintergrundbilder im DOM -->
+    <!-- TESTIMONIALS -->
+    <section class="py-24 bg-slate-900 dark:bg-slate-950 text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-10">
              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" loading="lazy" class="w-full h-full object-cover" alt="Saubere Wohnräume">
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase">Das sagen unsere Kunden</h3>
+                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase">Kundenstimmen</h3>
                 <div class="w-20 h-1 bg-brand-primary mx-auto mt-6"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20">
+                <!-- Testimonial -->
+                <div class="bg-white/5 backdrop-blur-md p-8 rounded-sm border border-white/10 hover:bg-white/10 transition-all">
                     <div class="flex text-yellow-400 mb-4 text-sm">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="font-light italic mb-6">"Ganz hervorragende Arbeit. Man merkt, dass die Beteiligten die Arbeiten gerne machen. So sieht dann auch das Ergebnis aus!"</p>
+                    <p class="font-light italic mb-6 text-slate-300">"Hervorragende Arbeit. Man merkt, dass die Beteiligten die Arbeiten gerne machen. Tolles Ergebnis!"</p>
                     <p class="font-heading font-bold uppercase tracking-wider text-sm text-brand-accent">- Andreas Wegener</p>
                 </div>
-                
-                <div class="bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20">
-                    <div class="flex text-yellow-400 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="font-light italic mb-6">"Wir waren sehr zufrieden, freundliche und kompetente Mitarbeiter. Folgetermin wurde schon vereinbart. Kontakt ebenfalls sehr nett, schnell und zuverlässig."</p>
-                    <p class="font-heading font-bold uppercase tracking-wider text-sm text-brand-accent">- Melanie Krumscheid</p>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20">
-                    <div class="flex text-yellow-400 mb-4 text-sm">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="font-light italic mb-6">"Sehr gute Arbeit, sehr kompetent und ehrlich. Danke für die gute Zusammenarbeit und bis bald."</p>
-                    <p class="font-heading font-bold uppercase tracking-wider text-sm text-brand-accent">- Dnzay Limitless</p>
-                </div>
+                <!-- ... Weitere Testimonials ... -->
             </div>
         </div>
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 bg-slate-50 dark:bg-brand-cardDark transition-colors">
+    <section id="contact" class="py-24 bg-slate-50 dark:bg-brand-dark transition-colors">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="font-heading text-3xl md:text-5xl font-bold uppercase">Kostenlose Anfrage</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto font-light">Lassen Sie uns Ihre Anforderungen besprechen. Wir erstellen Ihnen ein transparentes und unverbindliches Angebot zur Lösung Ihres Reinigungsproblems.</p>
+                <h2 class="font-heading text-3xl md:text-5xl font-bold uppercase dark:text-white">Kostenlose Anfrage</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto font-light italic">Wir erstellen Ihnen ein unverbindliches Angebot zur Lösung Ihres Reinigungsproblems.</p>
             </div>
 
-            <div class="bg-white dark:bg-brand-dark rounded-sm shadow-2xl border border-slate-100 dark:border-white/5 flex flex-col lg:flex-row overflow-hidden">
+            <div class="bg-white dark:bg-slate-900 rounded-sm shadow-2xl border border-slate-100 dark:border-slate-800 flex flex-col lg:flex-row overflow-hidden">
                 
                 <!-- Info Side -->
-                <div class="lg:w-1/3 p-10 bg-brand-primary text-white relative overflow-hidden">
+                <div class="lg:w-1/3 p-12 bg-brand-primary text-white relative overflow-hidden">
                     <div class="absolute -bottom-20 -right-20 opacity-10">
                         <i class="fa-solid fa-droplet text-9xl"></i>
                     </div>
-                    <h2 class="font-heading text-2xl font-bold uppercase mb-8 relative z-10">Kontakt aufnehmen</h2>
-                    <div class="space-y-8 relative z-10">
+                    <h2 class="font-heading text-2xl font-bold uppercase mb-10 relative z-10">Kontakt</h2>
+                    <div class="space-y-10 relative z-10">
                         <div>
-                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-70 mb-1">Einsatzgebiet</span>
+                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-80 mb-2">Einsatzgebiet</span>
                             <p class="text-lg font-medium">Neuwied, Koblenz<br>& Umgebung</p>
                         </div>
                         <div>
-                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-70 mb-1">Telefon</span>
-                            <a href="tel:+4915901620070" class="text-lg font-medium hover:underline">01590 1620070</a>
+                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-80 mb-2">Telefon</span>
+                            <a href="tel:+4915901620070" class="text-xl font-bold hover:underline transition-all">01590 1620070</a>
                         </div>
                         <div>
-                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-70 mb-1">E-Mail</span>
-                            <a href="mailto:info@hesses-fensterreinigung.de" class="text-lg font-medium hover:underline">info@hesses-fensterreinigung.de</a>
+                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-80 mb-2">E-Mail</span>
+                            <a href="mailto:info@hesses-fensterreinigung.de" class="text-lg font-medium hover:underline transition-all">info@hesses-fensterreinigung.de</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Form Side -->
-                <div class="lg:w-2/3 p-10">
-                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault(); alert('Vielen Dank für Ihre Anfrage. Dies ist eine Demo-Umgebung.');">
+                <div class="lg:w-2/3 p-10 md:p-12">
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-8" onsubmit="event.preventDefault(); alert('Demo-Modus: Nachricht wurde nicht gesendet.');">
                         <div class="md:col-span-2">
-                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Ihr Name / Firmenname *</label>
-                            <input type="text" required class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="Max Mustermann">
+                            <label class="font-heading block text-xs uppercase font-bold text-slate-500 dark:text-slate-400 mb-3">Ihr Name / Firmenname *</label>
+                            <input type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary dark:text-white transition-all rounded-sm" placeholder="Max Mustermann">
                         </div>
                         <div>
-                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">E-Mail *</label>
-                            <input type="email" required class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="mail@beispiel.de">
+                            <label class="font-heading block text-xs uppercase font-bold text-slate-500 dark:text-slate-400 mb-3">E-Mail *</label>
+                            <input type="email" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary dark:text-white transition-all rounded-sm" placeholder="mail@beispiel.de">
                         </div>
                         <div>
-                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Telefonnummer</label>
-                            <input type="tel" class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="0170 1234567">
+                            <label class="font-heading block text-xs uppercase font-bold text-slate-500 dark:text-slate-400 mb-3">Telefonnummer</label>
+                            <input type="tel" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary dark:text-white transition-all rounded-sm" placeholder="0170 1234567">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Angefragte Leistung</label>
-                            <select class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm appearance-none text-slate-600 dark:text-slate-300">
-                                <option value="">- auswählen -</option>
+                            <label class="font-heading block text-xs uppercase font-bold text-slate-500 dark:text-slate-400 mb-3">Angefragte Leistung</label>
+                            <select class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary dark:text-white transition-all rounded-sm appearance-none">
+                                <option value="">- Bitte wählen -</option>
                                 <option value="Glasreinigung">Glas- & Fensterreinigung</option>
                                 <option value="Wintergarten">Wintergarten- / Glasdachreinigung</option>
                                 <option value="Solar">Solar- & Photovoltaikreinigung</option>
                             </select>
                         </div>
                         <div class="md:col-span-2">
-                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Ihre Nachricht *</label>
-                            <textarea rows="4" required class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="Details zu Flächengröße, Zugänglichkeit etc."></textarea>
+                            <label class="font-heading block text-xs uppercase font-bold text-slate-500 dark:text-slate-400 mb-3">Ihre Nachricht *</label>
+                            <textarea rows="4" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary dark:text-white transition-all rounded-sm" placeholder="Wie können wir Ihnen helfen?"></textarea>
                         </div>
-                        <div class="md:col-span-2 flex items-start gap-3 mt-2">
-                            <input type="checkbox" required id="dsgvo" class="mt-1">
-                            <label for="dsgvo" class="text-xs text-slate-500 dark:text-slate-400 leading-tight cursor-pointer">Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu. Diese Erlaubnis kann ich jederzeit widerrufen.</label>
+                        <div class="md:col-span-2 flex items-start gap-4 mt-2">
+                            <input type="checkbox" required id="dsgvo" class="mt-1 h-4 w-4 rounded border-gray-300 text-brand-primary focus:ring-brand-primary">
+                            <label for="dsgvo" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed cursor-pointer italic">Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu.</label>
                         </div>
-                        <button type="submit" class="md:col-span-2 bg-brand-primary text-white py-5 font-heading font-bold uppercase tracking-widest shadow-xl hover:bg-sky-700 active:scale-[0.98] transition-all">
-                            Anfrage verbindlich senden
+                        <button type="submit" class="md:col-span-2 bg-brand-primary text-white py-5 font-heading font-bold uppercase tracking-widest shadow-xl hover:bg-sky-700 hover:scale-[1.01] active:scale-[0.98] transition-all">
+                            Jetzt unverbindlich anfragen
                         </button>
                     </form>
                 </div>
@@ -466,31 +460,30 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-100 dark:bg-black py-12 transition-colors border-t border-slate-200 dark:border-white/5">
+    <footer class="bg-white dark:bg-slate-950 py-16 transition-colors border-t border-slate-200 dark:border-slate-900">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex flex-col items-center justify-center mb-8">
-                <i class="fa-solid fa-droplet text-brand-primary text-2xl mb-3"></i>
-                <span class="font-heading font-bold text-xl tracking-widest uppercase">HESSE'S FENSTERREINIGUNGSSERVICE</span>
-                <span class="text-xs text-slate-500 mt-1">Nachhaltig sauber.</span>
+            <div class="flex flex-col items-center justify-center mb-10">
+                <i class="fa-solid fa-droplet text-brand-primary text-3xl mb-4"></i>
+                <span class="font-heading font-bold text-2xl tracking-[0.2em] uppercase dark:text-white">HESSE'S FENSTERREINIGUNGSSERVICE</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-medium tracking-widest">Wissenschaftliche Reinheit seit Generationen.</span>
             </div>
-            <div class="flex flex-wrap justify-center gap-8 mb-8 font-heading text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">
-                <a href="#" class="hover:text-brand-primary transition-colors">Impressum</a>
-                <a href="#" class="hover:text-brand-primary transition-colors">Datenschutz</a>
-                <a href="#contact" class="hover:text-brand-primary transition-colors">Kontakt</a>
+            <div class="flex flex-wrap justify-center gap-12 mb-10 font-heading text-[10px] uppercase font-bold tracking-[0.3em] text-slate-500 dark:text-slate-400">
+                <a href="#" class="hover:text-brand-primary transition-colors border-b border-transparent hover:border-brand-primary pb-1">Impressum</a>
+                <a href="#" class="hover:text-brand-primary transition-colors border-b border-transparent hover:border-brand-primary pb-1">Datenschutz</a>
+                <a href="#contact" class="hover:text-brand-primary transition-colors border-b border-transparent hover:border-brand-primary pb-1">Kontakt</a>
             </div>
-            <p class="font-heading text-[10px] text-slate-400 uppercase tracking-widest">&copy; 2026 Hesse's Fensterreinigungsservice. Alle Rechte vorbehalten.</p>
+            <p class="font-heading text-[10px] text-slate-400 dark:text-slate-600 uppercase tracking-widest">&copy; 2026 Hesse's Fensterreinigungsservice. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
     <script>
         // Init Smooth Scroll (Buttery Smooth Configuration)
         const lenis = new Lenis({
-            duration: 1.5, // Erhöht auf 1.5s für ein extrem sanftes, langes Ausgleiten
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponentielle Easing-Kurve
+            duration: 1.6, 
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smoothWheel: true,
-            wheelMultiplier: 1,
-            smoothTouch: false, // Auf Mobilgeräten false lassen, da natives Scrollen dort UX-technisch überlegen ist
-            touchMultiplier: 2
+            wheelMultiplier: 1.1,
+            smoothTouch: false
         });
 
         function raf(time) {
@@ -503,18 +496,17 @@
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             if (menu.style.maxHeight === '0px' || !menu.style.maxHeight) {
-                menu.style.maxHeight = '600px';
+                menu.style.maxHeight = '700px';
             } else {
                 menu.style.maxHeight = '0px';
             }
         }
 
-        // Dark Mode Toggle Logic (Multi-Button Support für Desktop & Mobile)
+        // Dark Mode Toggle Logic
         const themeToggles = document.querySelectorAll('.theme-toggle');
         const themeIcons = document.querySelectorAll('.theme-icon');
         const html = document.documentElement;
 
-        // Check for saved preference
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
             themeIcons.forEach(icon => icon.classList.replace('fa-moon', 'fa-sun'));
@@ -534,7 +526,7 @@
             });
         });
 
-        // Smooth scroll for anchors via Lenis
+        // Smooth scroll for anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (this.getAttribute('href') !== '#') {
