@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesse's Fensterreinigungsservice | Streifenfreie Fenster & Solarreinigung</title>
+    <meta name="description" content="Ihr hochspezialisierter Fachbetrieb für Glasreinigung, Fenster, Wintergärten und Solaranlagen in Neuwied, Koblenz und Umgebung.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Google Fonts: Oswald & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- PERFORMANCE OPTIMIERUNG: Preload für das Hero-Bild (Largest Contentful Paint) -->
+    <link rel="preload" as="image" href="Fenster.webp">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#f0f9ff',
+                            dark: '#082f49',
+                            primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                            accent: 'rgb(var(--color-accent) / <alpha-value>)',
+                            cardLight: '#ffffff',
+                            cardDark: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    },
+                    animation: {
+                        'scroll': 'scroll 40s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Klares 'Glas-Blau' (Sky 600) & Akzent (Sky 400) */
+            --color-primary: 2 132 199; 
+            --color-accent: 56 189 248;
+        }
+
+        /* Glättung für Dark Mode Transition */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Lenis Setup */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        
+        /* Mobile-Optimierte Marquee Maskierung */
+        .marquee-container {
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        /* Navigation Underline Animation */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -2px; left: 0;
+            background-color: rgb(var(--color-primary));
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #0284c7; }
+
+        /* Mobile UX: Verhindert den automatischen iOS Safari Zoom bei Formularfeldern */
+        @media screen and (max-width: 767px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-brand-dark dark:text-slate-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-40 bg-white/90 dark:bg-brand-dark/95 backdrop-blur-md border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex items-center justify-between h-20 md:h-24">
+                
+                <!-- LOGO -->
+                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer" onclick="lenis.scrollTo('#home')">
+                    <div class="relative w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-brand-primary opacity-20 rotate-45 rounded-sm group-hover:rotate-90 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 border-2 border-brand-primary rotate-45 rounded-sm group-hover:rotate-0 transition-transform duration-500"></div>
+                        <i class="fa-solid fa-droplet text-brand-primary text-sm md:text-lg relative z-10"></i>
+                    </div>
+                    <div class="flex flex-col font-heading">
+                        <span class="font-bold text-sm md:text-xl leading-none tracking-widest uppercase">
+                            HESSE'S <span class="text-brand-primary">FENSTERREINIGUNGS<br>SERVICE</span>
+                        </span>
+                        <span class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-brand-accent font-bold mt-1">Für klaren Durchblick.</span>
+                    </div>
+                </div>
+                
+                <!-- DESKTOP MENU -->
+                <div class="hidden lg:flex items-center space-x-8 font-heading">
+                    <a href="#home" class="nav-link text-sm font-medium uppercase tracking-wider">Start</a>
+                    <a href="#about" class="nav-link text-sm font-medium uppercase tracking-wider">Expertise</a>
+                    <a href="#process" class="nav-link text-sm font-medium uppercase tracking-wider">Ablauf</a>
+                    <a href="#services" class="nav-link text-sm font-medium uppercase tracking-wider">Leistungen</a>
+                    <a href="#contact" class="nav-link text-sm font-medium uppercase tracking-wider">Kontakt</a>
+                </div>
+
+                <!-- CALL BUTTON & THEME TOGGLE (Desktop) -->
+                <div class="hidden sm:flex items-center space-x-4 font-heading">
+                    <button class="theme-toggle p-2 text-slate-400 hover:text-brand-primary dark:text-slate-400 dark:hover:text-yellow-400 transition-colors focus:outline-none" aria-label="Farbschema wechseln">
+                        <i class="fa-solid fa-moon text-xl theme-icon"></i>
+                    </button>
+                    <a href="tel:+4915901620070" class="bg-brand-primary hover:bg-sky-700 text-white px-5 py-2.5 rounded-sm text-sm font-bold uppercase tracking-widest transition-all shadow-md active:translate-y-0.5">
+                        <i class="fa-solid fa-phone mr-2"></i> Beratung
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle & Theme Toggle -->
+                <div class="lg:hidden flex items-center space-x-2">
+                    <button class="theme-toggle p-2 text-slate-400 hover:text-brand-primary dark:text-slate-400 dark:hover:text-yellow-400 transition-colors focus:outline-none sm:hidden" aria-label="Farbschema wechseln">
+                        <i class="fa-solid fa-moon text-xl theme-icon"></i>
+                    </button>
+                    <button type="button" onclick="toggleMenu()" class="p-2 text-slate-600 dark:text-slate-300 focus:outline-none" aria-label="Menü öffnen">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU OVERLAY -->
+        <div id="mobile-menu" class="lg:hidden bg-white dark:bg-brand-cardDark border-t border-slate-100 dark:border-white/10 transition-all duration-300 overflow-hidden max-h-0 font-heading">
+            <div class="px-6 py-8 space-y-4 text-center">
+                <a href="#home" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Startseite</a>
+                <a href="#about" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Expertise</a>
+                <a href="#process" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Ablauf</a>
+                <a href="#services" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2">Leistungen</a>
+                <a href="#contact" onclick="toggleMenu()" class="block text-xl font-medium uppercase py-2 text-brand-primary">Kontakt</a>
+                <hr class="border-slate-100 dark:border-white/5">
+                <a href="tel:+4915901620070" class="inline-flex items-center justify-center w-full bg-brand-primary text-white font-bold py-4 rounded-sm uppercase tracking-widest shadow-lg">
+                    <i class="fa-solid fa-phone mr-3"></i> 01590 1620070
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <!-- PERFORMANCE: fetchpriority="high" signalisiert dem Browser, dieses Bild mit höchster Priorität zu laden (LCP-Optimierung) -->
+            <img src="Fenster.webp" fetchpriority="high" class="w-full h-full object-cover" alt="Fensterreinigung mit Abzieher und Schaum auf Glasscheibe">
+            <div class="absolute inset-0 bg-white/80 dark:bg-brand-dark/90 transition-colors duration-500"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center animate-fade-in-up">
+            <span class="inline-block px-4 py-1 border border-brand-primary/30 text-brand-primary dark:text-brand-accent font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-8 rounded-full font-heading">
+                Ihr Spezialist in Neuwied & Koblenz
+            </span>
+            <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight uppercase tracking-tight">
+                Perfekter Durchblick. <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-blue-400">Ohne Kompromisse.</span>
+            </h1>
+            <p class="max-w-3xl mx-auto text-lg md:text-xl text-slate-700 dark:text-slate-300 mb-10 font-light leading-relaxed">
+                Als hochspezialisierter Fachbetrieb bieten wir Ihnen professionelle Glas-, Fenster- und Solarreinigung. Verlassen Sie sich auf modernste Reinigungstechnik, physikalische Reinheit und streifenfreie Ergebnisse für Privat- und Gewerbekunden.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 items-center font-heading">
+                <a href="#contact" class="w-full sm:w-auto bg-brand-primary text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-sky-700 transition-all shadow-xl text-sm">
+                    Kostenlos anfragen
+                </a>
+                <a href="#services" class="w-full sm:w-auto border-2 border-slate-300 dark:border-slate-700 px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-sm">
+                    Unsere Leistungen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE (TRUST) -->
+    <section class="py-8 bg-white dark:bg-brand-dark border-y border-slate-100 dark:border-white/5 overflow-hidden relative">
+        <div class="marquee-container w-full">
+            <div class="flex w-max animate-scroll">
+                <div class="flex gap-16 px-8 text-slate-400 dark:text-slate-500 font-heading font-semibold uppercase tracking-[0.2em] text-[10px] md:text-xs items-center">
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Streifenfreie Garantie</span>
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-water text-brand-primary mr-2"></i> Osmose-Verfahren (Reinstwasser)</span>
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-building text-brand-primary mr-2"></i> Für Gewerbe & Privat</span>
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-solar-panel text-brand-primary mr-2"></i> Werterhalt Ihrer Anlagen</span>
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-leaf text-brand-primary mr-2"></i> Umweltschonend</span>
+                    <!-- Duplicate for infinite loop illusion -->
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-check text-brand-primary mr-2"></i> Streifenfreie Garantie</span>
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-water text-brand-primary mr-2"></i> Osmose-Verfahren (Reinstwasser)</span>
+                    <span class="whitespace-nowrap"><i class="fa-solid fa-building text-brand-primary mr-2"></i> Für Gewerbe & Privat</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (Die physikalische Tiefe der Reinigung) -->
+    <section id="about" class="py-24 md:py-32 bg-slate-50 dark:bg-brand-dark relative transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 relative">
+                    <div class="absolute -top-4 -left-4 w-32 h-32 bg-brand-primary/10 rounded-full blur-2xl"></div>
+                    <!-- PERFORMANCE & STABILITÄT: Lokales Bild (Fesntermann.webp) mit Fokus auf Arbeitssicherheit und Professionalität -->
+                    <img src="Fesntermann.webp" loading="lazy" alt="Handwerker bei der professionellen Glasreinigung" class="relative rounded-sm shadow-xl w-full aspect-[4/3] object-cover">
+                    <div class="absolute -bottom-6 -right-6 bg-white dark:bg-brand-cardDark p-8 border border-slate-200 dark:border-white/10 shadow-2xl">
+                        <span class="block font-heading text-4xl font-bold text-brand-primary leading-none">100%</span>
+                        <span class="font-heading text-[10px] uppercase tracking-widest text-slate-400">Rückstandsfrei</span>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h2 class="text-brand-primary font-heading font-bold uppercase tracking-[0.3em] mb-4 text-xs">Warum ein Spezialist?</h2>
+                    <h3 class="font-heading text-3xl md:text-5xl font-bold mb-6 uppercase leading-tight">Wissenschaft der Sauberkeit.</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg font-light mb-6 leading-relaxed">
+                        Eine professionelle Glasreinigung geht weit über herkömmliches Putzen hinaus. Hartnäckige Verschmutzungen, mineralische Ablagerungen und Umwelteinflüsse erfordern fundiertes Fachwissen über Oberflächenbeschaffenheiten und Reinigungschemie.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg font-light mb-8 leading-relaxed">
+                        Wir setzen bei Bedarf auf entmineralisiertes Reinstwasser (Osmose-Verfahren). Da dieses Wasser physikalisch "ungesättigt" ist, zieht es Schmutzpartikel wie ein Magnet an und trocknet anschließend absolut rückstands- und streifenfrei ab – ganz ohne umweltschädliche Tenside.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 flex items-center justify-center rounded-sm bg-brand-primary/10 dark:bg-white/5">
+                                <i class="fa-solid fa-shield-halved text-brand-primary"></i>
+                            </div>
+                            <span class="font-medium font-heading uppercase text-sm tracking-wide">Werterhalt durch professionelle Pflege</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 flex items-center justify-center rounded-sm bg-brand-primary/10 dark:bg-white/5">
+                                <i class="fa-solid fa-leaf text-brand-primary"></i>
+                            </div>
+                            <span class="font-medium font-heading uppercase text-sm tracking-wide">Starkes Umweltbewusstsein & Ökologie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION (Wie unser Reinigungsservice abläuft) -->
+    <section id="process" class="py-24 bg-brand-light dark:bg-brand-cardDark/40 transition-colors border-y border-slate-200 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-primary font-heading font-bold uppercase tracking-[0.3em] mb-4 text-xs">Der Prozess</h2>
+                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase">Wie unser Service abläuft</h3>
+                <div class="w-20 h-1 bg-brand-primary mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                <!-- Verbindende Linie (nur Desktop) -->
+                <div class="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-slate-200 dark:bg-slate-700 z-0"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-white dark:bg-brand-dark rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-xl mb-6 group-hover:border-brand-primary transition-colors duration-300">
+                        <i class="fa-solid fa-phone-alt text-2xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-3">1. Beratung & Angebot</h4>
+                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Wir analysieren Ihre Flächen und erstellen ein präzises, unverbindliches Angebot – exakt auf Ihre architektonischen Gegebenheiten zugeschnitten.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-white dark:bg-brand-dark rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-xl mb-6 group-hover:border-brand-primary transition-colors duration-300">
+                        <i class="fa-solid fa-calendar-check text-2xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-3">2. Terminvereinbarung</h4>
+                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Gemeinsam finden wir ein Zeitfenster, das Ihren Betriebs- oder Privatalltag minimal tangiert. Zuverlässigkeit ist unsere Konstante.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-white dark:bg-brand-dark rounded-full flex items-center justify-center border-4 border-slate-100 dark:border-slate-800 shadow-xl mb-6 group-hover:border-brand-primary transition-colors duration-300">
+                        <i class="fa-solid fa-wand-magic-sparkles text-2xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-3">3. Ausführung</h4>
+                    <p class="text-slate-500 dark:text-slate-400 font-light px-4">Fachgerechte, termintreue Umsetzung mit hochwirksamen, materialschonenden Methoden für ein tadelloses Ergebnis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES (Cards) -->
+    <section id="services" class="py-24 bg-white dark:bg-brand-dark transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-primary font-heading font-bold uppercase tracking-[0.3em] mb-4 text-xs">Spezialgebiete</h2>
+                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase">Unsere Leistungen</h3>
+                <div class="w-20 h-1 bg-brand-primary mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 dark:bg-brand-cardDark p-8 rounded-sm border border-slate-200 dark:border-white/5 hover:border-brand-primary dark:hover:border-brand-primary transition-all group flex flex-col h-full">
+                    <i class="fa-solid fa-window-maximize text-4xl text-brand-primary mb-6 block group-hover:scale-110 transition-transform origin-left"></i>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide">Glas- & Fensterreinigung</h4>
+                    <p class="text-brand-primary font-heading text-sm uppercase tracking-widest mb-4 font-semibold">Der Durchblick den Sie brauchen!</p>
+                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Von der klassischen Fensterfront im Eigenheim bis zur komplexen Glasfassade im Gewerbebau. Wir entfernen fachmännisch Witterungsspuren, Abgase und hartnäckige Verschmutzungen für maximale Transparenz.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-slate-50 dark:bg-brand-cardDark p-8 rounded-sm border border-slate-200 dark:border-white/5 hover:border-brand-primary dark:hover:border-brand-primary transition-all group flex flex-col h-full">
+                    <i class="fa-solid fa-house-chimney-window text-4xl text-brand-primary mb-6 block group-hover:scale-110 transition-transform origin-left"></i>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide">Wintergartenreinigung</h4>
+                    <p class="text-brand-primary font-heading text-sm uppercase tracking-widest mb-4 font-semibold">Wohlfühlort mit Ausblick!</p>
+                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Überkopfverglasungen und schwer zugängliche Dachfenster stellen besondere Anforderungen. Wir sorgen mit spezieller Ausrüstung für Sicherheit und streifenfreie Sauberkeit – innen wie außen.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-50 dark:bg-brand-cardDark p-8 rounded-sm border border-slate-200 dark:border-white/5 hover:border-brand-primary dark:hover:border-brand-primary transition-all group flex flex-col h-full">
+                    <i class="fa-solid fa-solar-panel text-4xl text-brand-primary mb-6 block group-hover:scale-110 transition-transform origin-left"></i>
+                    <h4 class="font-heading text-xl font-bold uppercase mb-2 tracking-wide">Solar- & PV-Reinigung</h4>
+                    <p class="text-brand-primary font-heading text-sm uppercase tracking-widest mb-4 font-semibold">Geld sparen durch Sauberkeit!</p>
+                    <p class="text-slate-500 dark:text-slate-400 font-light mb-8 flex-grow">Verschmutzte Solarmodule (durch Staub, Pollen, Vogelkot) erleiden signifikante Ertragsverluste. Wir reinigen Ihre Module chemiefrei mit entmineralisiertem Wasser, um die physikalische Effizienz der Zellen wiederherzustellen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS (Das sagen unsere Kunden) -->
+    <section class="py-24 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+             <!-- PERFORMANCE: loading="lazy" für Hintergrundbilder im DOM -->
+             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" loading="lazy" class="w-full h-full object-cover" alt="Saubere Wohnräume">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="font-heading text-3xl md:text-5xl font-bold uppercase">Das sagen unsere Kunden</h3>
+                <div class="w-20 h-1 bg-brand-primary mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20">
+                    <div class="flex text-yellow-400 mb-4 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="font-light italic mb-6">"Ganz hervorragende Arbeit. Man merkt, dass die Beteiligten die Arbeiten gerne machen. So sieht dann auch das Ergebnis aus!"</p>
+                    <p class="font-heading font-bold uppercase tracking-wider text-sm text-brand-accent">- Andreas Wegener</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20">
+                    <div class="flex text-yellow-400 mb-4 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="font-light italic mb-6">"Wir waren sehr zufrieden, freundliche und kompetente Mitarbeiter. Folgetermin wurde schon vereinbart. Kontakt ebenfalls sehr nett, schnell und zuverlässig."</p>
+                    <p class="font-heading font-bold uppercase tracking-wider text-sm text-brand-accent">- Melanie Krumscheid</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20">
+                    <div class="flex text-yellow-400 mb-4 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="font-light italic mb-6">"Sehr gute Arbeit, sehr kompetent und ehrlich. Danke für die gute Zusammenarbeit und bis bald."</p>
+                    <p class="font-heading font-bold uppercase tracking-wider text-sm text-brand-accent">- Dnzay Limitless</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-slate-50 dark:bg-brand-cardDark transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl md:text-5xl font-bold uppercase">Kostenlose Anfrage</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto font-light">Lassen Sie uns Ihre Anforderungen besprechen. Wir erstellen Ihnen ein transparentes und unverbindliches Angebot zur Lösung Ihres Reinigungsproblems.</p>
+            </div>
+
+            <div class="bg-white dark:bg-brand-dark rounded-sm shadow-2xl border border-slate-100 dark:border-white/5 flex flex-col lg:flex-row overflow-hidden">
+                
+                <!-- Info Side -->
+                <div class="lg:w-1/3 p-10 bg-brand-primary text-white relative overflow-hidden">
+                    <div class="absolute -bottom-20 -right-20 opacity-10">
+                        <i class="fa-solid fa-droplet text-9xl"></i>
+                    </div>
+                    <h2 class="font-heading text-2xl font-bold uppercase mb-8 relative z-10">Kontakt aufnehmen</h2>
+                    <div class="space-y-8 relative z-10">
+                        <div>
+                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-70 mb-1">Einsatzgebiet</span>
+                            <p class="text-lg font-medium">Neuwied, Koblenz<br>& Umgebung</p>
+                        </div>
+                        <div>
+                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-70 mb-1">Telefon</span>
+                            <a href="tel:+4915901620070" class="text-lg font-medium hover:underline">01590 1620070</a>
+                        </div>
+                        <div>
+                            <span class="font-heading block text-[10px] uppercase tracking-widest opacity-70 mb-1">E-Mail</span>
+                            <a href="mailto:info@hesses-fensterreinigung.de" class="text-lg font-medium hover:underline">info@hesses-fensterreinigung.de</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="lg:w-2/3 p-10">
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault(); alert('Vielen Dank für Ihre Anfrage. Dies ist eine Demo-Umgebung.');">
+                        <div class="md:col-span-2">
+                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Ihr Name / Firmenname *</label>
+                            <input type="text" required class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="Max Mustermann">
+                        </div>
+                        <div>
+                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">E-Mail *</label>
+                            <input type="email" required class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="mail@beispiel.de">
+                        </div>
+                        <div>
+                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Telefonnummer</label>
+                            <input type="tel" class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="0170 1234567">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Angefragte Leistung</label>
+                            <select class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm appearance-none text-slate-600 dark:text-slate-300">
+                                <option value="">- auswählen -</option>
+                                <option value="Glasreinigung">Glas- & Fensterreinigung</option>
+                                <option value="Wintergarten">Wintergarten- / Glasdachreinigung</option>
+                                <option value="Solar">Solar- & Photovoltaikreinigung</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="font-heading block text-xs md:text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 mb-2">Ihre Nachricht *</label>
+                            <textarea rows="4" required class="w-full bg-slate-50 dark:bg-brand-cardDark border border-slate-200 dark:border-slate-700 p-4 outline-none focus:border-brand-primary transition-colors rounded-sm" placeholder="Details zu Flächengröße, Zugänglichkeit etc."></textarea>
+                        </div>
+                        <div class="md:col-span-2 flex items-start gap-3 mt-2">
+                            <input type="checkbox" required id="dsgvo" class="mt-1">
+                            <label for="dsgvo" class="text-xs text-slate-500 dark:text-slate-400 leading-tight cursor-pointer">Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu. Diese Erlaubnis kann ich jederzeit widerrufen.</label>
+                        </div>
+                        <button type="submit" class="md:col-span-2 bg-brand-primary text-white py-5 font-heading font-bold uppercase tracking-widest shadow-xl hover:bg-sky-700 active:scale-[0.98] transition-all">
+                            Anfrage verbindlich senden
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-100 dark:bg-black py-12 transition-colors border-t border-slate-200 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex flex-col items-center justify-center mb-8">
+                <i class="fa-solid fa-droplet text-brand-primary text-2xl mb-3"></i>
+                <span class="font-heading font-bold text-xl tracking-widest uppercase">HESSE'S FENSTERREINIGUNGSSERVICE</span>
+                <span class="text-xs text-slate-500 mt-1">Nachhaltig sauber.</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 mb-8 font-heading text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">
+                <a href="#" class="hover:text-brand-primary transition-colors">Impressum</a>
+                <a href="#" class="hover:text-brand-primary transition-colors">Datenschutz</a>
+                <a href="#contact" class="hover:text-brand-primary transition-colors">Kontakt</a>
+            </div>
+            <p class="font-heading text-[10px] text-slate-400 uppercase tracking-widest">&copy; 2026 Hesse's Fensterreinigungsservice. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Init Smooth Scroll (Buttery Smooth Configuration)
+        const lenis = new Lenis({
+            duration: 1.5, // Erhöht auf 1.5s für ein extrem sanftes, langes Ausgleiten
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponentielle Easing-Kurve
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            smoothTouch: false, // Auf Mobilgeräten false lassen, da natives Scrollen dort UX-technisch überlegen ist
+            touchMultiplier: 2
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Mobile Menu Logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.maxHeight === '0px' || !menu.style.maxHeight) {
+                menu.style.maxHeight = '600px';
+            } else {
+                menu.style.maxHeight = '0px';
+            }
+        }
+
+        // Dark Mode Toggle Logic (Multi-Button Support für Desktop & Mobile)
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const themeIcons = document.querySelectorAll('.theme-icon');
+        const html = document.documentElement;
+
+        // Check for saved preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            themeIcons.forEach(icon => icon.classList.replace('fa-moon', 'fa-sun'));
+        }
+
+        themeToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    themeIcons.forEach(icon => icon.classList.replace('fa-sun', 'fa-moon'));
+                    localStorage.theme = 'light';
+                } else {
+                    html.classList.add('dark');
+                    themeIcons.forEach(icon => icon.classList.replace('fa-moon', 'fa-sun'));
+                    localStorage.theme = 'dark';
+                }
+            });
+        });
+
+        // Smooth scroll for anchors via Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    lenis.scrollTo(this.getAttribute('href'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
